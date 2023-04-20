@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
         <v-card v-for="item in card" :key="item.id" class="mr-7 mt-10">
             <v-card-text class="d-flex justify-center flex-column flex-wrap">
                 <v-chip label color="success" class="text-center" v-if="item.maisUsado">
@@ -84,13 +84,17 @@ export default {
     min-width: 139px;
     display: inline-block;
 }
-
 .symbol {
     font-weight: normal;
     font-size: 20px;
     ;
 }
-
 .ideal {
     width: 217px;
-}</style>
+}
+.v-card {
+  flex-grow: 1;
+  flex-basis: 300px;
+  margin: 10px;
+}
+</style>

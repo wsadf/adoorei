@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex">
-        <v-form>
+        <v-form style="max-width: 617px;">
             <v-col class="text-left pb-0 pt-0">
                 Nome completo
                 <v-text-field required type="text" v-model="form.nome" label="Informe seu nome completo" outlined
