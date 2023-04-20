@@ -6,8 +6,8 @@
         </router-link>
         <v-btn :class="[this.$route.name == 'login' || this.$route.name == 'cadastro' ? 'd-none' : '']" class="mx-2" fab
             dark small color="#D9D9D9">
-            <v-icon dark>
-                mdi-minus
+            <v-icon dark @click="logout()">
+                mdi-close
             </v-icon>
         </v-btn>
     </v-container>
@@ -17,5 +17,11 @@
 
 export default {
     name: 'TopoComponents',
+
+    methods: {
+        logout() {
+           this.$router.push({ name: 'login' });
+        }
+    }
 };
 </script>
