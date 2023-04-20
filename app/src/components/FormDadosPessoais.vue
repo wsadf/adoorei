@@ -1,6 +1,6 @@
 <template>
-    <div class="d-flex">
-        <v-form style="max-width: 617px;">
+    <div class="d-flex flex-wrap justify-center">
+        <v-form style="max-width: 617px;" class="item">
             <v-col class="text-left pb-0 pt-0">
                 Nome completo
                 <v-text-field required type="text" v-model="form.nome" label="Informe seu nome completo" outlined
@@ -68,7 +68,7 @@
                 Criar Conta
             </v-btn>
         </v-form>
-        <CardEscolhido class="ml-5" />
+        <CardEscolhido class="ml-5 item" />
         <SnackBar :mensage="snackBar.message" :snackbar="snackBar.show" :button="true" :color="snackBar.color"
             :timeout="9000" @changeSnackBar="snackbar => snackBar.show = snackbar.visible" />
     </div>
@@ -170,5 +170,10 @@ export default {
 
 .invalid-feedback {
     color: red
+}
+.item {
+  flex-grow: 1;
+  flex-basis: 300px;
+  margin: 10px;
 }
 </style>
