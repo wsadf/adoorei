@@ -9,11 +9,15 @@
           Nome
           <v-text-field required type="text" v-model="form.nome" label="Seu nome" outlined
             class="mt-1"></v-text-field>
+            <div v-if="isSubmitted && !$v.form.nome.required" class="invalid-feedback">Nome é obrigatório.</div>
         </v-col>
         <v-col class="text-left pb-0 pt-0">
           Senha
           <v-text-field required type="password" v-model="form.senha" label="Sua senha" outlined
-            class="mt-1"></v-text-field>
+            class="mt-1" :class="{ 'is-invalid': isSubmitted && $v.form.senha.$error }"></v-text-field>
+                <div v-if="isSubmitted && $v.form.senha.$error" class="invalid-feedback">
+                    <span v-if="!$v.form.senha.required">Senha é obrigatório.</span>
+                </div>
           <router-link to="/" class="d-flex justify-end">Esqueci minha senha</router-link>
         </v-col>
         <v-col>
@@ -31,6 +35,8 @@
 import Wrapper from '../components/Wrapper.vue';
 import Topo from '../components/Topo.vue';
 import api from '@/services/api'
+import { required } from "vuelidate/lib/validators";
+
 
 export default {
   name: 'LoginView',
@@ -49,11 +55,28 @@ export default {
         senha: '',
         response: ''
       },
+      isSubmitted: false
     }
   },
-
+  validations: {
+        form: {
+            nome: {
+                required
+            },
+            senha: {
+                required,
+            }
+        }
+    },
   methods: {
     login() {
+
+      this.isSubmitted = true;
+
+this.$v.$touch();
+if (this.$v.$invalid) {
+    return;
+}
 
       api.post("/auth/login", {
         username: this.form.nome,
@@ -92,5 +115,12 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.v-input {
+    height: 60px
+}
+
+.invalid-feedback {
+    color: red
 }
 </style>
