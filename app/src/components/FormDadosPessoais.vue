@@ -1,6 +1,6 @@
 <template>
-    <div class="container" style="max-width: 500px; text-align: left">
-        <v-form @submit.prevent="handleSubmit">
+    <div>
+        <v-form>
             <v-col class="text-left pb-0 pt-0">
                 Nome completo
                 <v-text-field required type="text" v-model="form.nome" label="Informe seu nome completo" outlined
@@ -10,9 +10,10 @@
             <v-col class="text-left pb-0 pt-0 mt-5">
                 Celular
                 <v-text-field required type="text" v-model="form.celular" label="(99) 99999-0000" outlined
-                    class="mt-1"></v-text-field>
-                <div v-if="isSubmitted && !$v.form.celular.required" class="invalid-feedback"
-                    :class="{ 'is-invalid': isSubmitted && $v.form.celular.$error }">Celular é obrigatório.</div>
+                    class="mt-1" :class="{ 'is-invalid': isSubmitted && $v.form.celular.$error }"></v-text-field>
+                    <div v-if="isSubmitted && $v.form.celular.$error" class="invalid-feedback">
+                    <span v-if="!$v.form.celular.required">Celular é obrigatório.</span>
+                </div>
             </v-col>
             <v-col class="text-left pb-0 pt-0 mt-5">
                 E-mail
@@ -34,7 +35,7 @@
                 </div>
             </v-col>
 
-            <v-col class="text-left pb-0 pt-0 mt-5">
+            <v-col class="text-left pb-0 pt-0 my-5">
                 Confirme sua senha
                 <v-text-field required type="password" v-model="form.confirmPassword" label="Sua senha" outlined
                     class="mt-1"></v-text-field>
@@ -63,7 +64,7 @@
                 </div>
             </div>
             <v-divider></v-divider>
-            <v-btn dark block class="py-8 mt-5" color="pink" @click.prevent="handleSubmit()">
+            <v-btn dark block class="py-8 mt-5" color="pink" @click.prevent="criar()">
                 Criar Conta
             </v-btn>
         </v-form>
@@ -139,7 +140,7 @@ export default {
         }
     },
     methods: {
-        handleSubmit() {
+        criar() {
             this.isSubmitted = true;
 
             this.$v.$touch();
