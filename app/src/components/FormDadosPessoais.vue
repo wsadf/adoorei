@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="d-flex">
         <v-form>
             <v-col class="text-left pb-0 pt-0">
                 Nome completo
@@ -68,6 +68,7 @@
                 Criar Conta
             </v-btn>
         </v-form>
+        <CardEscolhido class="ml-5" />
         <SnackBar :mensage="snackBar.message" :snackbar="snackBar.show" :button="true" :color="snackBar.color"
             :timeout="9000" @changeSnackBar="snackbar => snackBar.show = snackbar.visible" />
     </div>
@@ -77,6 +78,8 @@
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 import api from '@/services/api'
 import SnackBar from '../components/SnackBar.vue';
+import CardEscolhido from '../components/CardEscolhido.vue';
+
 
 
 export default {
@@ -84,7 +87,8 @@ export default {
     name: 'FormDadosPessoais',
 
     components: {
-        SnackBar
+        SnackBar,
+        CardEscolhido
     },
 
     data() {
