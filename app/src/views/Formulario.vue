@@ -4,7 +4,7 @@
         <InternaMain>
             <titulo-pagina :titulo="tituloDaPagina" />
             <subTitulo-pagina :subtitulo="subtitulo" />
-            <Card />
+            <FormDadosPessoais />
         </InternaMain>
     </Wrapper>
 </template>
@@ -13,22 +13,22 @@
 import Wrapper from '../components/Wrapper.vue';
 import Topo from '../components/Topo.vue';
 import InternaMain from '../components/InternaMain.vue';
-import Card from '../components/Card.vue';
 import TituloPagina from '../components/TituloPagina.vue';
 import SubTituloPagina from '../components/SubTituloPagina.vue';
+import FormDadosPessoais from '../components/FormDadosPessoais.vue';
 
 
 export default {
-    name: 'CadastroView',
+
+    name: 'FormularioView',
 
     components: {
         Topo,
         Wrapper,
         InternaMain,
-        Card,
+        FormDadosPessoais,
         'titulo-pagina': TituloPagina,
         'subTitulo-pagina': SubTituloPagina
-
     },
 
     data() {
@@ -36,8 +36,6 @@ export default {
             tituloDaPagina: 'Você está muito próximo de mudar a forma de',
             subtitulo: 'Escolha o seu plano',
         }
-    }
-
+    },
 }
-
 </script>

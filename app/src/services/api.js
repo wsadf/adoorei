@@ -5,6 +5,5 @@ const api = axios.create({
 })
 
 axios.defaults.withCredentials = true
-// axios.defaults.headers.get['header-name'] = 'value'
 
 export default api;

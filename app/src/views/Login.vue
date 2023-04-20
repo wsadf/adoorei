@@ -17,7 +17,7 @@
           <router-link to="/" class="d-flex justify-end">Esqueci minha senha</router-link>
         </v-col>
         <v-col>
-          <v-btn dark block class="py-8" color="pink" v-on:click.prevent="login()">
+          <v-btn dark block class="py-8" color="pink" @click.prevent="login()">
             Fazer login
           </v-btn>
         </v-col>
@@ -49,7 +49,6 @@ export default {
         senha: '',
         response: ''
       },
-      users: {},
     }
   },
 
@@ -62,13 +61,11 @@ export default {
       })
       .then((response) => {
            this.response = response.data;
-           console.log(response.data.token)
            this.$router.push({ name: 'home' });
           localStorage.setItem( 'token', JSON.stringify(response.data.token) );
           localStorage.setItem('username', this.form.nome);
          })
-         .catch((error) => {
-           console.log(error);
+         .catch(() => {
            localStorage.removeItem('token');
            localStorage.removeItem('username');
          });
